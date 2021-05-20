@@ -22,7 +22,14 @@ void encryption(int key, char* line) {
 }
 
 
-int main() {
+int main(int argc, char* argv[]) {
+    if (argc != 3) {
+        printf("invalid input data!\n");
+        return 1;
+    }
+    int a = std::stoi(std::string(argv[2]));
+    char address_input[16];
+    snprintf(address_input, strlen(argv[1]) + 1, "%s", argv[1]);
     int sock;
     struct sockaddr_in addr;
     struct sockaddr_in addr_out;
@@ -36,10 +43,10 @@ int main() {
         perror("socket");
         return 0;
     }
-
+    std::int16_t sh = a;
     addr.sin_family = AF_INET;
-    addr.sin_port = htons(3425);
-    addr.sin_addr.s_addr = inet_addr("192.168.56.101");
+    addr.sin_port = htons(a);
+    addr.sin_addr.s_addr = inet_addr(address_input);
 
     if (bind(sock, (struct sockaddr *)&addr, sizeof(addr)) < 0) {
         perror("bind");
