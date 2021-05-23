@@ -36,7 +36,7 @@ int main(int argc, char* argv[]) {
         printf("Invalid port parser: %s\n", argv[1]);
         exit(EXIT_FAILURE);
     }
-    
+
     if (port < 49152 || port > 65535) {
         printf("Invalid port value: %s\n", argv[1]);
         exit(EXIT_FAILURE);
