@@ -11,7 +11,6 @@
 #include <sstream>
 
 int main(int argc, char* argv[]) {
-
     if (argc != 2) {
         printf("invalid input data!\n");
         return 1;
