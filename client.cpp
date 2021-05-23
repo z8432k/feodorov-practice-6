@@ -1,6 +1,6 @@
 // This code is not protected by any copyright as far as I know
 // It is based on misc public sources on the Internet, including MSDN
-// Prepared by Mark Polyak in 2020
+// Prepared by Kitel Boris in 2021
 
 #include <stdio.h>
 #include <winsock2.h>
