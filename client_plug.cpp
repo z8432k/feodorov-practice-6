@@ -33,7 +33,7 @@ int main(int argc, char* argv[]) {
     int sock;
     struct sockaddr_in addr;
 
-    char msg[1024] = "abczxc1290";
+    char msg[1024] = "abczxc, 1290.";
     char recvbuf[1024];
 
     sock = socket(AF_INET, SOCK_DGRAM, 0);
