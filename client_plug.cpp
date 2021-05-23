@@ -11,7 +11,7 @@
 #include <sstream>
 
 int main(int argc, char* argv[]) {
-    if (argc != 2) {
+    if (argc < 2) {
         printf("invalid input data!\n");
         return 1;
     }
@@ -33,7 +33,7 @@ int main(int argc, char* argv[]) {
     int sock;
     struct sockaddr_in addr;
 
-    char msg[128] = "abczxc, 1290.";
+    char msg[128] = "abczxc, 1290$3";
     char recvbuf[128];
 
     sock = socket(AF_INET, SOCK_DGRAM, 0);
