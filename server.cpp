@@ -9,6 +9,7 @@
 #include <stdio.h>
 #include <cstdlib>
 #include <cstring>
+#include <sstream>
 
 void encryption(int key, char* line) {
     for (int i = 0; i < strlen(line); i++) {
@@ -23,13 +24,19 @@ void encryption(int key, char* line) {
 
 
 int main(int argc, char* argv[]) {
-    if (argc != 3) {
+    if (argc != 2) {
         printf("invalid input data!\n");
         return 1;
     }
-    int a = std::stoi(std::string(argv[2]));
-    char address_input[16];
-    snprintf(address_input, strlen(argv[1]) + 1, "%s", argv[1]);
+    unsigned int port = 0;
+    std::stringstream PortPars(argv[1]);
+    PortPars >> port;
+
+    if (port < 49152 || port > 65535) {
+        printf("Invalid port value: %s\n", argv[1]);
+        exit(EXIT_FAILURE);
+    }
+
     int sock;
     struct sockaddr_in addr;
     struct sockaddr_in addr_out;
@@ -43,10 +50,9 @@ int main(int argc, char* argv[]) {
         perror("socket");
         return 0;
     }
-    std::int16_t sh = a;
     addr.sin_family = AF_INET;
-    addr.sin_port = htons(a);
-    addr.sin_addr.s_addr = inet_addr(address_input);
+    addr.sin_port = htons(port);
+    addr.sin_addr.s_addr = htonl(INADDR_ANY);
 
     if (bind(sock, (struct sockaddr *)&addr, sizeof(addr)) < 0) {
         perror("bind");
