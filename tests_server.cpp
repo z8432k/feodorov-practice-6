@@ -1,3 +1,4 @@
+// Copyright [2021] <Kitel Boris>
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <sys/wait.h>
