@@ -33,8 +33,8 @@ int main(int argc, char* argv[]) {
     int sock;
     struct sockaddr_in addr;
 
-    char msg[1024] = "abczxc, 1290.";
-    char recvbuf[1024];
+    char msg[128] = "abczxc, 1290.";
+    char recvbuf[128];
 
     sock = socket(AF_INET, SOCK_DGRAM, 0);
     if (sock < 0) {
@@ -48,10 +48,10 @@ int main(int argc, char* argv[]) {
 
     unsigned int SizeAddr = sizeof(addr);
 
-    int sentbytes = sendto(sock, msg, 1024, 0,
+    int sentbytes = sendto(sock, msg, 128, 0,
     (struct sockaddr *)&addr, SizeAddr);
 
-    int recvbytes = recvfrom(sock, recvbuf, 1024, 0,
+    int recvbytes = recvfrom(sock, recvbuf, 128, 0,
      (struct sockaddr *)&addr, &SizeAddr);
 
     printf("%s\n", recvbuf);
