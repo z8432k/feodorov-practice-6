@@ -1,4 +1,4 @@
-// Copyright Kitel Boris 2021
+// Copyright [2021] Kitel Boris
 
 #include <sys/types.h>
 #include <sys/socket.h>
@@ -20,7 +20,7 @@ int main(int argc, char** argv) {
         }
         default: {
             int status;
-            waitpid(pid, &status, 0);
+            waitpid(process_id, &status, 0);
             printf("Exit status: %d\n", status);
         }
     }

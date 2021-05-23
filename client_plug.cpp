@@ -1,4 +1,4 @@
-// Prepared by Kitel Boris in 2021
+// Copyright [2021] <Kitel Boris>
 
 
 #include <sys/types.h>
@@ -9,25 +9,6 @@
 #include <cstdlib>
 #include <cstring>
 #include <sstream>
-
-void uncryption(int key, char* line) {
-    char buf[128];
-    for (int i = 0; i < strlen(line); i++) {
-        if (line[i] >= 'A' && line[i] <= 'Z') {
-            line[i] = (((line[i] - 'A') - key) % 26) + 'A';
-            if (line[i] < 'A')
-                line[i] = line[i] + 26;
-        } else if (line[i] >= 'a' && line[i] <= 'z') {
-            line[i] = (((line[i] - 'a') - key) % 26) + 'a';
-            if (line[i] < 'a')
-                line[i] = line[i]+26;
-        } else if (line[i] >= '0' && line[i] <= '9') {
-            line[i] = (((line[i] - '0') - key) % 10) + '0';
-            if (line[i] < '0')
-                line[i] = line[i]+10;
-        }
-    }
-}
 
 int main(int argc, char* argv[]) {
 
@@ -67,7 +48,7 @@ int main(int argc, char* argv[]) {
     addr.sin_addr.s_addr = htonl(INADDR_LOOPBACK);
 
     unsigned int SizeAddr = sizeof(addr);
-    
+
     int sentbytes = sendto(sock, msg, 1024, 0,
     (struct sockaddr *)&addr, SizeAddr);
 
