@@ -1,0 +1,17 @@
+name: tests
+
+on: [push, pull_request, workflow_dispatch]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - run: mkdir build
+    - run: g++ server.cpp -o build/server.exe -lpthread
+    - run: g++ tests_server.cpp -o build/tests_server.exe
+    - run: build/tests_server.exe
+    - run: build/tests_server.exe "Kitel Boris"
+    - run: build/tests_server.exe 3425
+
+
