@@ -12,7 +12,7 @@ int main(int argc, char** argv) {
     pid_t process_id;
     switch (process_id = fork()) {
         case 0: {
-            execl("./client_plug.exe", "", argv[1], NULL);
+            execl("build/client_plug.exe", "", argv[1], NULL);
         }
         case -1: {
             perror("fork");
