@@ -1,6 +1,47 @@
 cmake_minimum_required(VERSION 3.10 FATAL_ERROR)
-
 project(os-task5 LANGUAGES C CXX)
+################################################################################
+
+
+
+
+
+################################
+#                              #
+#            CLIENT            #
+#                              #
+################################
+
+if(CMAKE_HOST_SYSTEM_NAME STREQUAL "Windows") # <= Тут ничего не трогать
+    # Изменить поддиректорию строчкой ниже в соответствии с заданием
+    add_subdirectory(client)
+endif()
+
+
+
+################################################################################
+
+
+
+################################
+#                              #
+#            SERVER            #
+#                              #
+################################
+
+if(CMAKE_HOST_SYSTEM_NAME STREQUAL "Linux") # <= Тут ничего не торгать
+    # Изменить поддиректорию строчкой ниже в соответствии с заданием
+    add_subdirectory(server)
+endif()
+
+
+
+
+
+################################################################################
+################################################################################
+
+
 
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_C_EXTENSIONS OFF)
@@ -18,41 +59,4 @@ endif()
 
 message(STATUS "Build type: ${CMAKE_BUILD_TYPE}")
 
-if(CMAKE_COMPILER_IS_GNUCC)
-    message(STATUS "Detected GNU compiler. Using specific flags.")
-    set(CMAKE_C_FLAGS_RELEASE "-pipe -O0")
-    set(CMAKE_CXX_FLAGS_RELEASE "-pipe -O0")
-endif()
-
-
-#enable_testing()
 add_subdirectory(tests)
-
-################################################################################
-
-
-
-################################
-#                              #
-#            CLIENT            #
-#                              #
-################################
-if(CMAKE_HOST_SYSTEM_NAME STREQUAL "Windows") # <= Тут ничего не трогать
-    # Изменить поддиректорию строчкой ниже в соответствии с заданием
-    add_subdirectory(client)
-endif()
-
-
-################################
-#                              #
-#            SERVER            #
-#                              #
-################################
-if(CMAKE_HOST_SYSTEM_NAME STREQUAL "Linux") # <= Тут ничего не торгать
-    # Изменить поддиректорию строчкой ниже в соответствии с заданием
-    add_subdirectory(server)
-endif()
-
-
-
-################################################################################
