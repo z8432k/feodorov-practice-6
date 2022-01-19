@@ -36,7 +36,8 @@ endif()
 #            CLIENT            #
 #                              #
 ################################
-if(CMAKE_HOST_SYSTEM_NAME STREQUAL "Windows")
+if(CMAKE_HOST_SYSTEM_NAME STREQUAL "Windows") # <= Тут ничего не трогать
+    # Изменить поддиректорию в соответствии с заданием строчкой ниже
     add_subdirectory(client)
 endif()
 
@@ -46,6 +47,7 @@ endif()
 #            SERVER            #
 #                              #
 ################################
-if(CMAKE_HOST_SYSTEM_NAME STREQUAL "Linux")
+if(CMAKE_HOST_SYSTEM_NAME STREQUAL "Linux") # <= Тут ничего не торгать
+    # Изменить поддиректорию в соответствии с заданием строчкой ниже
     add_subdirectory(server)
 endif()

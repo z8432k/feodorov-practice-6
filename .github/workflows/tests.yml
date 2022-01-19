@@ -31,5 +31,5 @@ jobs:
           cmake --version
           cmake -S . -B build
           cmake --build build
-      - name: 'Test application'
-        run: build/bin/server "Kitel Boris"
+      #- name: 'Test application'
+      #  run: build/bin/server 50000 &
