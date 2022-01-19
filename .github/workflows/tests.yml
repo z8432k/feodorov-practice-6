@@ -6,56 +6,25 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - run: mkdir build
-    #- run: g++ server.cpp -o build/server.exe
-    #- run: g++ tests_server.cpp -o build/tests_server.exe
-    #- run: build/tests_server.exe
-    #- run: build/tests_server.exe "Kitel Boris"
-    #- run: build/tests_server.exe 3425
-
-  linux_build:
-    name: 'Linux Build'
-    runs-on: 'ubuntu-latest'
-    steps:
       - uses: actions/checkout@v2
-      - name: Upgrade cmake
-        run: |
-          sudo mv /usr/local/bin/cmake /usr/local/bin/cmake-old
-          wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | sudo apt-key add -
-          sudo apt-add-repository 'deb https://apt.kitware.com/ubuntu/ bionic main'
-          sudo apt-get update && sudo apt-get install -y cmake
-          cmake --version
-      - name: 'Build application'
+      - name: 'Build applications'
         run: |
           cmake --version
           cmake -S . -B build
           cmake --build build
-      #- name: 'Test application'
-      #  run: build/bin/server 50000 &
+      - run: build/bin/tests_server
+      - run: build/bin/tests_server "Kitel Boris"
+      - run: build/bin/tests_server 3425
 
-  windows_build:
-    name: 'Windows Build'
-    runs-on: 'windows-latest'
+  test_connection:
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
-      - name: Install msys
-        env:
-          ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
-        run: |
-          $msyspath="msys64"
-          choco install msys2 --params="/InstallDir:$msyspath /NoPath" -y
-          echo "::add-path::$msyspath\usr\bin"
-          echo "::add-path::$msyspath"
-          echo "::add-path::$msyspath\mingw64\bin"
-          echo "::add-path::$msyspath\mingw64\lib"
-          echo "::add-path::$msyspath\mingw64\include"
-      - name: Install gcc and gmp
-        run: |
-          pacman --noconfirm -Syu
-          pacman --noconfirm -S mingw-w64-x86_64-gcc mingw-w64-x86_64-gmp
-      - name: Build application
+      - uses: actions/checkout@v2
         run: |
           cmake --version
-          cmake -S . -B build -G "MSYS Makefiles"
+          cmake -S . -B build
           cmake --build build
+      - run: |
+          build/bin/server 50000 &
+          sleep 5
+          build/bin/tests_client_plug 50000

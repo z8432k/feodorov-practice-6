@@ -21,11 +21,12 @@ message(STATUS "Build type: ${CMAKE_BUILD_TYPE}")
 if(CMAKE_COMPILER_IS_GNUCC)
     message(STATUS "Detected GNU compiler. Using specific flags.")
     set(CMAKE_C_FLAGS_RELEASE "-pipe -O0")
+    set(CMAKE_CXX_FLAGS_RELEASE "-pipe -O0")
 endif()
 
 
 #enable_testing()
-#add_subdirectory(tests)
+add_subdirectory(tests)
 
 ################################################################################
 
@@ -37,7 +38,7 @@ endif()
 #                              #
 ################################
 if(CMAKE_HOST_SYSTEM_NAME STREQUAL "Windows") # <= Тут ничего не трогать
-    # Изменить поддиректорию в соответствии с заданием строчкой ниже
+    # Изменить поддиректорию строчкой ниже в соответствии с заданием
     add_subdirectory(client)
 endif()
 
@@ -48,6 +49,10 @@ endif()
 #                              #
 ################################
 if(CMAKE_HOST_SYSTEM_NAME STREQUAL "Linux") # <= Тут ничего не торгать
-    # Изменить поддиректорию в соответствии с заданием строчкой ниже
+    # Изменить поддиректорию строчкой ниже в соответствии с заданием
     add_subdirectory(server)
 endif()
+
+
+
+################################################################################
