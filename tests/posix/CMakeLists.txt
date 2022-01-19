@@ -1,6 +1,6 @@
+# Файл можно править по своему усмотрению.
+# Это инструкции для сборки ваших тестов на POSIX (Linux)
 
-add_executable(tests_client_plug tests_client_plug.cpp)
-
-add_executable(tests_server tests_server.cpp)
-
-add_executable(client_plug client_plug.cpp)
+### Пример цесли сборки тестового исполнимого файла
+#
+# add_executable(posixtest posixtest.cpp)
