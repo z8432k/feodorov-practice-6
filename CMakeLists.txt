@@ -27,7 +27,7 @@ add_subdirectory(tests)
 #                              #
 ################################
 
-if(CMAKE_HOST_SYSTEM_NAME STREQUAL "Linux") #           <= Тут ничего не торгать
+if(CMAKE_HOST_SYSTEM_NAME STREQUAL "Linux")
 
     ################
 
@@ -47,11 +47,10 @@ endif()
 #                              #
 ################################
 
-if(CMAKE_HOST_SYSTEM_NAME STREQUAL "Windows") #         <= Тут ничего не трогать
+if(CMAKE_HOST_SYSTEM_NAME STREQUAL "Windows")
 
     # NB: Библиотека линкуется автоматитчески для всех целей ниже
-    # Не трогать.
-    link_libraries(wsock32 ws2_32)
+    link_libraries(wsock32 ws2_32) # Не трогать.
 
 
     ################
