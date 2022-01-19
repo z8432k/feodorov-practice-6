@@ -40,6 +40,8 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: Install msys
+        env:
+          ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
         run: |
           $msyspath="msys64"
           choco install msys2 --params="/InstallDir:$msyspath /NoPath" -y
