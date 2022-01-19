@@ -1,23 +1,7 @@
 cmake_minimum_required(VERSION 3.10 FATAL_ERROR)
 project(os-task5 LANGUAGES C CXX)
-################################################################################
 
-
-
-
-
-################################
-#                              #
-#            CLIENT            #
-#                              #
-################################
-
-if(CMAKE_HOST_SYSTEM_NAME STREQUAL "Windows") # <= Тут ничего не трогать
-    # Изменить поддиректорию строчкой ниже в соответствии с заданием
-    add_subdirectory(client)
-endif()
-
-
+add_subdirectory(tests)
 
 ################################################################################
 
@@ -32,6 +16,29 @@ endif()
 if(CMAKE_HOST_SYSTEM_NAME STREQUAL "Linux") # <= Тут ничего не торгать
     # Изменить поддиректорию строчкой ниже в соответствии с заданием
     add_subdirectory(server)
+endif()
+
+
+
+
+
+################################################################################
+
+
+
+
+################################
+#                              #
+#            CLIENT            #
+#                              #
+################################
+
+if(CMAKE_HOST_SYSTEM_NAME STREQUAL "Windows") # <= Тут ничего не трогать
+    # NB: Библиотека линкуется автоматитчески для всех целей ниже
+    link_libraries(wsock32 ws2_32)
+
+    # Изменить поддиректорию строчкой ниже в соответствии с заданием
+    add_subdirectory(client)
 endif()
 
 
@@ -58,5 +65,3 @@ if (NOT CMAKE_BUILD_TYPE)
 endif()
 
 message(STATUS "Build type: ${CMAKE_BUILD_TYPE}")
-
-add_subdirectory(tests)

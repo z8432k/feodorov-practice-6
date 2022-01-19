@@ -1,12 +1,11 @@
 set(CMAKE_INCLUDE_CURRENT_DIR_IN_INTERFACE  ON)
 
-# NB: Не забудь каждую цель линковать с библиотекой!
-#
-# ПРИМЕР НИЖЕ
-#
-# if(WIN32)
-#    target_link_libraries(ИМЯ_ЦЕЛИ wsock32 ws2_32)
-# endif()
+set(CMAKE_INCLUDE_CURRENT_DIR_IN_INTERFACE  ON)
+
+# NB: Библиотека линкуется автоматитчески для всех целей ниже
+link_libraries(wsock32 ws2_32)
+
+################################################################################
 
 
 add_executable(wintest wintest.cpp)
