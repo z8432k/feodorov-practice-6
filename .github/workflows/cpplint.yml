@@ -15,5 +15,5 @@ jobs:
             echo "Use of NOLINT is forbidden! Don't be lazy and fix style errors."
             exit 1
         fi
-    - run: if [[ ! -s client.cpp ]]; then echo 'No client code found'; exit 1; fi
-    - run: if [[ ! -s server.cpp ]]; then echo 'No server code found'; exit 1; fi
+    - run: if [[ ! -s client/client.cpp ]]; then echo 'No client code found'; exit 1; fi
+    - run: if [[ ! -s server/server.cpp ]]; then echo 'No server code found'; exit 1; fi
