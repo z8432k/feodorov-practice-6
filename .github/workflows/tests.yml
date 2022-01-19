@@ -33,3 +33,27 @@ jobs:
           cmake --build build
       #- name: 'Test application'
       #  run: build/bin/server 50000 &
+
+  windows_build:
+    name: 'Windows Build'
+    runs-on: 'windows-latest'
+    steps:
+      - uses: actions/checkout@v1
+      - name: Install msys
+        run: |
+          $msyspath="msys64"
+          choco install msys2 --params="/InstallDir:$msyspath /NoPath" -y
+          echo "::add-path::$msyspath\usr\bin"
+          echo "::add-path::$msyspath"
+          echo "::add-path::$msyspath\mingw64\bin"
+          echo "::add-path::$msyspath\mingw64\lib"
+          echo "::add-path::$msyspath\mingw64\include"
+      - name: Install gcc and gmp
+        run: |
+          pacman --noconfirm -Syu
+          pacman --noconfirm -S mingw-w64-x86_64-gcc mingw-w64-x86_64-gmp
+      - name: Build application
+        run: |
+          cmake --version
+          cmake -S . -B build -G "MSYS Makefiles"
+          cmake --build build
