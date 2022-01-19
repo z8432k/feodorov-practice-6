@@ -1,13 +1,12 @@
 name: tests
-
 on: [push, pull_request, workflow_dispatch]
-
 jobs:
   test:
+    name: 'Linux tests'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: 'Build applications'
+      - name: Build & run applications
         run: |
           cmake --version
           cmake -S . -B build
@@ -20,6 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Build & run server/client pair
         run: |
           cmake --version
           cmake -S . -B build
