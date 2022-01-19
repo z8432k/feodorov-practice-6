@@ -45,10 +45,10 @@ jobs:
           echo "::add-path::$msyspath\mingw64\bin"
           echo "::add-path::$msyspath\mingw64\lib"
           echo "::add-path::$msyspath\mingw64\include"
-      - name: Install gcc and gmp
+      - name: Install compiler
         run: |
           pacman --noconfirm -Syu
-          pacman --noconfirm -S mingw-w64-x86_64-gcc mingw-w64-x86_64-gmp
+          pacman --noconfirm -S mingw-w64-x86_64-gcc
       - name: Build applications
         run: |
           cmake --version
